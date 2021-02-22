@@ -1,0 +1,47 @@
+<div class="content">
+    <div class="messages" #messagesEl>
+        <div *ngFor="let message of messages">
+            <div class="message" *ngIf="!message.self">
+                <div class="msg-name">{{message.username}}</div>
+                <div class="msg-content">{{message.content}}</div>
+            </div>
+            <div class="message me" *ngIf="message.self">
+                <div class="msg-name">Vous</div>
+                <div class="msg-content">{{message.content}}</div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+    <div class="form">
+        <textarea [(ngModel)]="input" class="form-text" (keydown.enter)="sendMessage()"></textarea><button class="send" (click)="sendMessage()">Envoyer</button>
+        <div class="count">
+            {{users.length}} en ligne
+        </div>
+    </div>
+</div>
+<div class="side">
+    <div class="top">
+        <div class="profile" [ngStyle]="{'background': color}">
+            <div class="online"></div>
+        </div>
+        <div class="username">
+           {{name}}
+        </div>
+        <div class="ping">
+            {{ping}} ms
+        </div>
+    </div>
+    <div class="list">
+        <br>
+        <div class="item" *ngFor="let user of users">
+            <div class="profile" [ngStyle]="{'background': user.color}">
+                <div class="online"></div>
+            </div>
+            <div class="username">
+                {{user.username}}
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
